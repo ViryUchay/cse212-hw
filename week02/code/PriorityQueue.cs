@@ -16,30 +16,27 @@
     }
 
     public string Dequeue()
-{
-    if (_queue.Count == 0)
     {
-        throw new InvalidOperationException("The queue is empty.");
-    }
-
-    int highPriorityIndex = 0;
-
-    for (int index = 1; index < _queue.Count; index++)
-    {
-        if (_queue[index].Priority > _queue[highPriorityIndex].Priority)
+        if (_queue.Count == 0)
         {
-            highPriorityIndex = index;
+            throw new InvalidOperationException("The queue is empty.");
         }
+
+        int highPriorityIndex = 0;
+
+        for (int index = 1; index < _queue.Count; index++)
+        {
+            if (_queue[index].Priority > _queue[highPriorityIndex].Priority)
+            {
+                highPriorityIndex = index;
+            }
+        }
+
+        string value = _queue[highPriorityIndex].Value;
+        _queue.RemoveAt(highPriorityIndex);
+
+        return value;
     }
-
-    string value = _queue[highPriorityIndex].Value;
-
-    // ✅ REMOVE the item from queue
-    _queue.RemoveAt(highPriorityIndex);
-
-    return value;
-}
-
     // DO NOT MODIFY THE CODE IN THIS METHOD
     // The graders rely on this method to check if you fixed all the bugs, so changes to it will cause you to lose points.
     public override string ToString()

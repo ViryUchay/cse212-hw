@@ -1,11 +1,15 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-[TestClass]   // ✅ class wrapper
+[TestClass]
 public class PriorityQueueTests
 {
     [TestMethod]
     public void TestPriorityQueue_1()
     {
+        // Test: Highest priority item is removed first
+        // Expected Result: Tim → Sue → Bob
+        // Actual Result: Test passed successfully
+
         var pq = new PriorityQueue();
 
         pq.Enqueue("Bob", 1);
@@ -20,6 +24,10 @@ public class PriorityQueueTests
     [TestMethod]
     public void TestPriorityQueue_2()
     {
+        // Test: Same priority follows FIFO order
+        // Expected Result: Bob → Tim → Sue
+        // Actual Result: Test passed successfully
+
         var pq = new PriorityQueue();
 
         pq.Enqueue("Bob", 2);
