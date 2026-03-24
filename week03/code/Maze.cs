@@ -32,7 +32,17 @@ public class Maze
     /// </summary>
     public void MoveLeft()
     {
-        // FILL IN CODE
+       public static (int, int) MoveLeft(Dictionary<(int, int), (bool, bool, bool, bool)> maze, (int, int) position)
+{
+    var moves = maze[position];
+
+    if (moves.Item1) // left
+    {
+        return (position.Item1 - 1, position.Item2);
+    }
+
+    return position;
+}
     }
 
     /// <summary>
@@ -40,27 +50,53 @@ public class Maze
     /// can't move, throw an InvalidOperationException with the message "Can't go that way!".
     /// </summary>
     public void MoveRight()
+    public static (int, int) MoveRight(Dictionary<(int, int), (bool, bool, bool, bool)> maze, (int, int) position)
+{
+    var moves = maze[position];
+
+    if (moves.Item1) // Right
     {
-        // FILL IN CODE
+        return (position.Item1 - 1, position.Item2);
     }
+
+    return position;
+}
 
     /// <summary>
     /// Check to see if you can move up.  If you can, then move.  If you
     /// can't move, throw an InvalidOperationException with the message "Can't go that way!".
     /// </summary>
     public void MoveUp()
+    public static (int, int) MoveUp(Dictionary<(int, int), (bool, bool, bool, bool)> maze, (int, int) position)
+{
+    var moves = maze[position];
+
+    if (moves.Item1) // Up
     {
-        // FILL IN CODE
+        return (position.Item1 - 1, position.Item2);
     }
+
+    return position;
+}
+    
 
     /// <summary>
     /// Check to see if you can move down.  If you can, then move.  If you
     /// can't move, throw an InvalidOperationException with the message "Can't go that way!".
     /// </summary>
     public void MoveDown()
+    public static (int, int) MoveDown(Dictionary<(int, int), (bool, bool, bool, bool)> maze, (int, int) position)
+{
+    var moves = maze[position];
+
+    if (moves.Item1) // Down
     {
-        // FILL IN CODE
+        return (position.Item1 - 1, position.Item2);
     }
+
+    return position;
+}
+    
 
     public string GetStatus()
     {
