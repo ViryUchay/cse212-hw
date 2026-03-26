@@ -1,39 +1,59 @@
-public void MoveLeft()
+using System;
+using System.Collections.Generic;
+
+public class Maze
 {
-    var moves = _mazeMap[(_currX, _currY)];
+    private readonly Dictionary<(int, int), bool[]> _mazeMap;
+    private int _currX = 1;
+    private int _currY = 1;
 
-    if (!moves[0])
-        throw new InvalidOperationException("Can't go that way!");
+    public Maze(Dictionary<(int, int), bool[]> mazeMap)
+    {
+        _mazeMap = mazeMap;
+    }
 
-    _currX--;
-}
+    public void MoveLeft()
+    {
+        var moves = _mazeMap[(_currX, _currY)];
 
-public void MoveRight()
-{
-    var moves = _mazeMap[(_currX, _currY)];
+        if (!moves[0])
+            throw new InvalidOperationException("Can't go that way!");
 
-    if (!moves[1])
-        throw new InvalidOperationException("Can't go that way!");
+        _currX--;
+    }
 
-    _currX++;
-}
+    public void MoveRight()
+    {
+        var moves = _mazeMap[(_currX, _currY)];
 
-public void MoveUp()
-{
-    var moves = _mazeMap[(_currX, _currY)];
+        if (!moves[1])
+            throw new InvalidOperationException("Can't go that way!");
 
-    if (!moves[2])
-        throw new InvalidOperationException("Can't go that way!");
+        _currX++;
+    }
 
-    _currY--;
-}
+    public void MoveUp()
+    {
+        var moves = _mazeMap[(_currX, _currY)];
 
-public void MoveDown()
-{
-    var moves = _mazeMap[(_currX, _currY)];
+        if (!moves[2])
+            throw new InvalidOperationException("Can't go that way!");
 
-    if (!moves[3])
-        throw new InvalidOperationException("Can't go that way!");
+        _currY--;
+    }
 
-    _currY++;
+    public void MoveDown()
+    {
+        var moves = _mazeMap[(_currX, _currY)];
+
+        if (!moves[3])
+            throw new InvalidOperationException("Can't go that way!");
+
+        _currY++;
+    }
+
+    public string GetStatus()
+    {
+        return $"Current location (x={_currX}, y={_currY})";
+    }
 }
