@@ -12,8 +12,7 @@ public static class SetsAndMaps
         {
             string reversed = new string(word.Reverse().ToArray());
 
-            // Ignore same-letter words like "aa"
-            if (word != reversed && set.Contains(reversed))
+            if (word != reversed && set.Contains(word) && set.Contains(reversed))
             {
                 result.Add($"{word} & {reversed}");
                 set.Remove(word);
@@ -33,7 +32,7 @@ public static class SetsAndMaps
         {
             string[] parts = line.Split(',');
 
-            if (parts.Length > 3)
+            if (parts.Length >= 4)
             {
                 string degree = parts[3].Trim();
 
@@ -93,12 +92,15 @@ public static class SetsAndMaps
 
         List<string> result = new List<string>();
 
-        foreach (var feature in data.features)
+        if (data?.Features != null)
         {
-            string place = feature.properties.place;
-            double mag = feature.properties.mag;
+            foreach (var feature in data.Features)
+            {
+                string place = feature.Properties?.Place ?? "Unknown location";
+                double mag = feature.Properties?.Mag ?? 0;
 
-            result.Add($"{place} - Mag {mag}");
+                result.Add($"{place} - Mag {mag}");
+            }
         }
 
         return result.ToArray();
